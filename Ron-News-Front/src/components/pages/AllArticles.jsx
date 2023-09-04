@@ -2,7 +2,10 @@ import { ArticleList } from "../ArticleList"
 
 export const AllArticles = () => {
     return (
-        <ArticleList/>
+        <>
+            <h1 className="articles-header">Showing all articles...</h1>
+            <ArticleList/>
+        </>
     )
  
 
