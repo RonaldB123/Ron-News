@@ -28,6 +28,13 @@
     margin-right: auto;
   }
 
+
+.voting-data {
+  margin-top: 20px;
+  font-size: 25px;
+  text-align: left;
+}
+
 }
 
 
@@ -50,6 +57,12 @@
   .singleArticle-img {
     height: 20rem;
     width: 20rem;
+  }
+
+  .voting-data {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 20px;
   }
 }
 
@@ -148,4 +161,22 @@
   list-style: none;
   padding: 0px;
   text-align: left;
+}
+
+.voting-container {
+  display: grid;
+  grid-template-columns: 40px 40px;
+}
+
+.voting-plus, .voting-minus {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 10px;
+}
+
+.votingClicked-plus, .votingClicked-minus {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 10px;
+  background-color: grey;
 }
