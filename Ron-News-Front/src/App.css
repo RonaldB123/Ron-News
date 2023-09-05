@@ -16,6 +16,18 @@
     width: 15rem;
   }
 
+  .singleArticle-img {
+    height: fit-content;
+    width: fit-content;
+
+  }
+
+  .singleArticle-container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 }
 
 
@@ -33,6 +45,11 @@
   .articleCard-img {
     height: 10rem;
     width: 10rem;
+  }
+
+  .singleArticle-img {
+    height: 20rem;
+    width: 20rem;
   }
 }
 
@@ -107,4 +124,18 @@
 
 .loading-header {
   text-align: center;
+}
+
+.singleArticle-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.singleArticle-img {
+  object-fit: cover;
+}
+
+.singleArticle-body {
+  line-height: 1.5;
 }
