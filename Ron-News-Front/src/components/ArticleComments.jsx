@@ -1,15 +1,24 @@
 import { getCommentsByArticleId } from "../api-functions/getCommentsByArticleId"
 import { useEffect, useState } from "react"
+import { Votes } from "./Votes"
 
 export const ArticleComments = ({article_id}) => {
     const [comments, setComments] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
             setComments(data.comments);
+            setIsLoading(false);
         })
 
     },[])
+
+    if(isLoading){
+        return (
+            <h1 className="loading-header">Loading...</h1>
+        )
+    }
 
     return (
         <div className="comments-container">
@@ -21,7 +30,7 @@ export const ArticleComments = ({article_id}) => {
                         <h3 className="commentsList-author">{comment.author}</h3>
                         <p className="commentsList-created">Created {comment.created_at.split("T")[0]}</p>
                         <p className="commentsList-body">{comment.body}</p>
-                        <p className="commentsList-votes">Votes: {comment.votes}</p>
+                        <Votes votesData={comment.votes}/>
                     </li>
                 })}
             </ul>
