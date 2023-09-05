@@ -41,8 +41,8 @@ export const Votes = ({votesData}) => {
     return (
         <div className="voting-container">
             <div className="voting-buttons">
-                <button onClick={handleVotePlusClick} className={!isClickedPlus ? "voting-plus" : "votingClicked-plus"}>+</button>
-                <button onClick={handleVoteMinusClick} className={!isClickedMinus ? "voting-minus" : "votingClicked-minus"}>-</button>
+                <button onClick={handleVotePlusClick} className={!isClickedPlus ? "voting-plus" : "votingClicked-plus"}><span>+</span></button>
+                <button onClick={handleVoteMinusClick} className={!isClickedMinus ? "voting-minus" : "votingClicked-minus"}><span>-</span></button>
             </div>
             <div className="voting-votes">
                 <p className="voting-data">{votes}</p>

@@ -66,11 +66,10 @@
   }
 }
 
-
-
 * {
   text-decoration: none;
   color: black;
+  line-height: 1.5;
 }
 
 .navbar-container {
@@ -149,10 +148,6 @@
   object-fit: cover;
 }
 
-.singleArticle-body {
-  line-height: 1.5;
-}
-
 .singleArticle-time {
   text-align: left;
 }
@@ -166,17 +161,24 @@
 .voting-container {
   display: grid;
   grid-template-columns: 40px 40px;
-}
+  }
 
 .voting-plus, .voting-minus {
   height: 30px;
   width: 30px;
   margin-bottom: 10px;
+  background-color: white;
+  border-width: 1px;
 }
 
 .votingClicked-plus, .votingClicked-minus {
   height: 30px;
   width: 30px;
   margin-bottom: 10px;
-  background-color: grey;
+  background-color: rgb(161, 161, 161);
+  border-width: 1px;
+}
+
+span {
+  font-size: 20px;
 }
