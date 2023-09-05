@@ -143,3 +143,9 @@
 .singleArticle-time {
   text-align: left;
 }
+
+.commentsList-container {
+  list-style: none;
+  padding: 0px;
+  text-align: left;
+}
