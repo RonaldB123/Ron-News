@@ -28,6 +28,8 @@ export const SingleArticle = () => {
             <p className='singleArticle-author'>By {article.author}</p>
             <hr className='singleArticle-line'></hr>
             <p className='singleArticle-body'>{article.body}</p>
+            <p className='singleArticle-time'>Created {article.created_at.split("T")[0]}</p>
+            <hr className='singleArticle-line'></hr>
         </div>
     )
 }

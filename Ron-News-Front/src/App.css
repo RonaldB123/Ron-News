@@ -139,3 +139,7 @@
 .singleArticle-body {
   line-height: 1.5;
 }
+
+.singleArticle-time {
+  text-align: left;
+}
