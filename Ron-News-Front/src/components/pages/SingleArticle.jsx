@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { getArticleById } from '../../api-functions/getArticleById';
 import { useEffect, useState } from 'react';
 import { ArticleComments } from '../ArticleComments';
+import { Votes } from '../Votes';
 
 export const SingleArticle = () => {
     const [article, setArticle] = useState([])
@@ -30,6 +31,7 @@ export const SingleArticle = () => {
             <hr className='singleArticle-line'></hr>
             <p className='singleArticle-body'>{article.body}</p>
             <p className='singleArticle-time'>Created {article.created_at.split("T")[0]}</p>
+            <Votes votesData={article.votes} article_id={article.article_id}/>
             <hr className='singleArticle-line'></hr>
             <ArticleComments article_id={article.article_id}/>
         </div>

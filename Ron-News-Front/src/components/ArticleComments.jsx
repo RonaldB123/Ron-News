@@ -30,7 +30,7 @@ export const ArticleComments = ({article_id}) => {
                         <h3 className="commentsList-author">{comment.author}</h3>
                         <p className="commentsList-created">Created {comment.created_at.split("T")[0]}</p>
                         <p className="commentsList-body">{comment.body}</p>
-                        <Votes votesData={comment.votes}/>
+                        {/* <Votes votesData={comment.votes}/> */}
                     </li>
                 })}
             </ul>

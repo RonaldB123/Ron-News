@@ -160,7 +160,9 @@
 
 .voting-container {
   display: grid;
-  grid-template-columns: 40px 40px;
+  grid-template-columns: 30px 40px;
+  width: min-content;
+  margin-left: auto;
   }
 
 .voting-plus, .voting-minus {
