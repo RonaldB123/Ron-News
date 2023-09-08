@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import { patchArticleVotes } from "../api-functions/patchArticleVotesByArticleId";
 
 export const Votes = ({votesData, article_id}) => {
-    const [votes, setVotes] = useState(0);
+    const [votes, setVotes] = useState(votesData);
     const [isClickedPlus, setIsClickedPlus] = useState(false);
     const [isClickedMinus, setIsClickedMinus] = useState(false);
     const [error, setError] = useState(false);
-
-    useEffect(() => {
-        setVotes(votesData);
-    }, [])
     
     const handleVotePlusClick = () => {
             if(!isClickedPlus && !isClickedMinus){
