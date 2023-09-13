@@ -34,3 +34,5 @@ Run the following in terminal:
 ```
 npm run dev
 ```
+
+Note: As the backend api is using free [Render](https://render.com/) to host the api, it might take a few minutes for an inital response from the api when starting up in addition to 15 minutes of inactivity. 
