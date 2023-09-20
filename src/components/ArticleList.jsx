@@ -2,6 +2,7 @@ import { ArticleCard } from "./ArticleCard"
 import { useEffect } from "react"
 import { getArticles } from "../api-functions/getArticles"
 import { useState } from "react"
+import { Container, Grid } from "@mui/material"
 
 export const ArticleList = () => {
     const [articleData, setArticleData] = useState([]);
@@ -21,8 +22,12 @@ export const ArticleList = () => {
     }
 
     return (
-    <div className="articleList-container">
-        <ArticleCard data={articleData}/>
-    </div>
+    <>
+    {articleData.map(article => {
+        return (
+            <ArticleCard data={article}/>
+            )
+        })}
+    </>
     )
 }
