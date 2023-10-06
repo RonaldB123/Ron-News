@@ -1,6 +1,7 @@
 import { getCommentsByArticleId } from "../api-functions/getCommentsByArticleId"
 import { useEffect, useState } from "react"
 import { Votes } from "./Votes"
+import { Divider } from "@mui/material"
 
 export const ArticleComments = ({article_id}) => {
     const [comments, setComments] = useState([])
@@ -26,7 +27,7 @@ export const ArticleComments = ({article_id}) => {
             <ul className="commentsList-container">
                 {comments.map(comment => {
                     return <li className="commentsList-item" key={comment.comment_id}>
-                        <hr></hr>
+                        <Divider/>
                         <h3 className="commentsList-author">{comment.author}</h3>
                         <p className="commentsList-created">Created {comment.created_at.split("T")[0]}</p>
                         <p className="commentsList-body">{comment.body}</p>
