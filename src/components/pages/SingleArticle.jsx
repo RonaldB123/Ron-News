@@ -24,19 +24,23 @@ export const SingleArticle = () => {
     },[])
 
     const handleUpVote = () => {
-        if(upVote){
+        if(!upVote && !downVote){
+            setUpVote(true);
+        }else if(upVote){
             setUpVote(false);
-        }
-        setUpVote(true);
-    }
-
-    const handleDownVote = () => {
-        if(downVote){
+        }else if(downVote){
             setDownVote(false);
         }
-        setDownVote(true);
     }
-    
+    const handleDownVote = () => {
+        if(!downVote && !upVote){
+            setDownVote(true);
+        }else if(downVote){
+            setDownVote(false);
+        }else if(upVote){
+            setUpVote(false);
+        }
+    }
 
     if(isLoading){
         return (
