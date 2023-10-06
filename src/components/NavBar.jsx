@@ -23,7 +23,7 @@ export const NavBar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, maxWidth: {xs:"80%",sm:"50%"}, mr: "auto", ml: "auto" }}>
       <AppBar position="static" sx={{ backgroundColor: "white" }}>
         <Toolbar>
           <NewspaperIcon sx={{mr: 1}}/>
@@ -34,15 +34,15 @@ export const NavBar = () => {
           >
             <Link to="/">Ron News</Link>
           </Typography>
-          <Typography sx={{display: {xs: "none", sm: "block"}}}><Link to="/articles">All Articles</Link></Typography>
-          <Typography sx={{display: {xs: "none", sm: "block"}, ml: 5}}><Link to="/topics">Topics</Link></Typography>
+          <Typography sx={{display: {xs: "none", md: "block"}}}><Link to="/articles">All Articles</Link></Typography>
+          <Typography sx={{display: {xs: "none", md: "block"}, ml: 5}}><Link to="/topics">Topics</Link></Typography>
           <Button
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            sx={{display: {sm:"none", }}}
+            sx={{display: {md:"none", }}}
           >
             <MenuIcon />
           </Button>
