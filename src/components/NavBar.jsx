@@ -9,8 +9,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ArticleIcon from '@mui/icons-material/Article';
 import CategoryIcon from '@mui/icons-material/Category';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from "react-router-dom";
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,13 +26,23 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "white" }}>
         <Toolbar>
+          <NewspaperIcon sx={{mr: 1}}/>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontSize: 25 }}
+          >
+            <Link to="/">Ron News</Link>
+          </Typography>
+          <Typography sx={{display: {xs: "none", sm: "block"}}}><Link to="/articles">All Articles</Link></Typography>
+          <Typography sx={{display: {xs: "none", sm: "block"}, ml: 5}}><Link to="/topics">Topics</Link></Typography>
           <Button
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            sx={{mr: 2}}
+            sx={{display: {sm:"none", }}}
           >
             <MenuIcon />
           </Button>
@@ -47,16 +57,7 @@ export const NavBar = () => {
           >
             <MenuItem onClick={handleClose}><ArticleIcon sx={{mr: 2}}/><Link to="/articles">All articles</Link></MenuItem>
             <MenuItem onClick={handleClose}><CategoryIcon sx={{mr: 2}}/><Link to="/topics">Topics</Link></MenuItem>
-            <MenuItem onClick={handleClose}><SettingsIcon sx={{mr: 2}}/><Link to="/settings">Settings</Link></MenuItem>
           </Menu>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, fontSize: 25 }}
-          >
-            <Link to="/">Ron News</Link>
-          </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
