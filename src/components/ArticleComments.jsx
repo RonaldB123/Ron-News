@@ -1,6 +1,5 @@
 import { getCommentsByArticleId } from "../api-functions/getCommentsByArticleId"
 import { useEffect, useState } from "react"
-import { Votes } from "./Votes"
 import { Divider } from "@mui/material"
 
 export const ArticleComments = ({article_id}) => {

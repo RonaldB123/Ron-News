@@ -35,38 +35,38 @@ export const SingleArticle = () => {
     },[vote])
 
     useEffect(()=> {
-        setUpVote(JSON.parse(localStorage.getItem("upVote")));
-        setDownVote(JSON.parse(localStorage.getItem("downVote")));
-    },[JSON.parse(localStorage.getItem("upVote")),JSON.parse(localStorage.getItem("downVote")) ])
+        setUpVote(JSON.parse(localStorage.getItem(`upVote_${article_id}`)));
+        setDownVote(JSON.parse(localStorage.getItem(`downVote_${article_id}`)));
+    },[JSON.parse(localStorage.getItem(`upVote_${article_id}`)),JSON.parse(localStorage.getItem(`downVote_${article_id}`)) ])
 
     const handleUpVote = () => {
         if(!upVote && !downVote){
             setUpVote(true);
             setVote(1);
-            localStorage.setItem("upVote", true)
+            localStorage.setItem(`upVote_${article_id}`, true)
         }else if(upVote){
             setUpVote(false);
             setVote(0);
-            localStorage.setItem("upVote", false)
+            localStorage.setItem(`upVote_${article_id}`, false)
         }else if(downVote){
             setDownVote(false);
             setVote(0);
-            localStorage.setItem("downVote", false)
+            localStorage.setItem(`downVote_${article_id}`, false)
         }
     }
     const handleDownVote = () => {
         if(!downVote && !upVote){
             setDownVote(true);
             setVote(-1);
-            localStorage.setItem("downVote", true)
+            localStorage.setItem(`downVote_${article_id}`, true)
         }else if(downVote){
             setDownVote(false);
             setVote(0);
-            localStorage.setItem("downVote", false)
+            localStorage.setItem(`downVote_${article_id}`, false)
         }else if(upVote){
             setUpVote(false);
             setVote(0);
-            localStorage.setItem("upVote", false)
+            localStorage.setItem(`upVote_${article_id}`, false)
         }
     }
 
