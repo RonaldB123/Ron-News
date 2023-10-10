@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import { getArticleById } from '../../api-functions/getArticleById';
 import { useEffect, useState } from 'react';
 import { ArticleComments } from '../ArticleComments';
-import { Votes } from '../Votes';
 import { Box, Container, Divider, Grid, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import { patchArticleVotes } from '../../api-functions/patchArticleVotesByArticleId';
 
 export const SingleArticle = () => {
     const [article, setArticle] = useState([])
@@ -15,7 +15,9 @@ export const SingleArticle = () => {
     const {article_id} = useParams();
     const [upVote, setUpVote] = useState(false);
     const [downVote, setDownVote] = useState(false);
-
+    const [vote, setVote] = useState(0);
+    const [error, setError] = useState(false);
+    
     useEffect(()=>{
         getArticleById(article_id).then(({data}) =>{
             setArticle(data.article)
@@ -23,28 +25,60 @@ export const SingleArticle = () => {
         })
     },[])
 
+    useEffect(()=> {
+        if(vote && article && vote !== 0){
+            patchArticleVotes(article.article_id, vote)
+                .catch(error => {
+                    setError(true);
+                })
+        }
+    },[vote])
+
+    useEffect(()=> {
+        setUpVote(JSON.parse(localStorage.getItem("upVote")));
+        setDownVote(JSON.parse(localStorage.getItem("downVote")));
+    },[JSON.parse(localStorage.getItem("upVote")),JSON.parse(localStorage.getItem("downVote")) ])
+
     const handleUpVote = () => {
         if(!upVote && !downVote){
             setUpVote(true);
+            setVote(1);
+            localStorage.setItem("upVote", true)
         }else if(upVote){
             setUpVote(false);
+            setVote(0);
+            localStorage.setItem("upVote", false)
         }else if(downVote){
             setDownVote(false);
+            setVote(0);
+            localStorage.setItem("downVote", false)
         }
     }
     const handleDownVote = () => {
         if(!downVote && !upVote){
             setDownVote(true);
+            setVote(-1);
+            localStorage.setItem("downVote", true)
         }else if(downVote){
             setDownVote(false);
+            setVote(0);
+            localStorage.setItem("downVote", false)
         }else if(upVote){
             setUpVote(false);
+            setVote(0);
+            localStorage.setItem("upVote", false)
         }
     }
 
     if(isLoading){
         return (
             <h1 className="loading-header">Loading...</h1>
+        )
+    }
+
+    if(error){
+        return (
+            <h1 className="loading-header">An error has occurred...</h1>
         )
     }
 
@@ -62,12 +96,12 @@ export const SingleArticle = () => {
             }}
             src={article.article_img_url}
             ></Box>
-            <Divider/>
+            <Divider sx={{mb: 2}}/>
             <Typography variant='subtitle1' sx={{textAlign: "left", mb: 2}}>{article.body}</Typography>
             <Typography variant='subtitle2'>Created {article.created_at.split("T")[0]}</Typography>
             <Grid container sx={{mt: 5, justifyContent: "center"}}>
                 <Grid item>
-                    <Typography sx={{fontSize: "30px", mr: 2}}>{article.votes}</Typography>
+                    <Typography sx={{fontSize: "30px", mr: 2}}>{article.votes + vote}</Typography>
                 </Grid>
                 <Grid item>
                     {upVote ? 
@@ -82,11 +116,8 @@ export const SingleArticle = () => {
                     }
                 </Grid>
             </Grid>
-        {/* <div className='singleArticle-container'>
-            <Votes votesData={article.votes} article_id={article.article_id}/> */}
             <Divider/>
             <ArticleComments article_id={article.article_id}/>
-        {/* </div> */}
         </Container>
     )
 }
