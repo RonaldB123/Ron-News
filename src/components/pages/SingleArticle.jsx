@@ -22,11 +22,25 @@ export const SingleArticle = () => {
         getArticleById(article_id).then(({data}) =>{
             setArticle(data.article)
             setIsLoading(false);
+            setUpVote(JSON.parse(localStorage.getItem(`upVote_${data.article.article_id}`)));
+            setDownVote(JSON.parse(localStorage.getItem(`downVote_${data.article.article_id}`)));
+            setVote(JSON.parse(localStorage.getItem(`vote_${article.article_id}`)));
         })
     },[])
+    
+    
+        useEffect(()=> {
+            if(article.article_id){
+                localStorage.setItem(`upVote_${article.article_id}`, JSON.stringify(upVote));
+                localStorage.setItem(`downVote_${article.article_id}`, JSON.stringify(downVote));
+                if(vote || vote === 0){
+                    localStorage.setItem(`vote_${article.article_id}`, JSON.stringify(vote));
+                }
+            }            
+        },[upVote, downVote, vote])
 
     useEffect(()=> {
-        if(vote && article.article_id && vote !== 0){
+        if(vote && article.article_id){
             patchArticleVotes(article.article_id, vote)
                 .catch(error => {
                     setError(true);
@@ -35,27 +49,25 @@ export const SingleArticle = () => {
     },[vote])
 
     const handleUpVote = () => {
-         if(upVote && vote !== 0){
-            setUpVote(false);
-            setVote(0);
-        }else if(!upVote && !downVote){
+        if(!upVote && !downVote){
             setUpVote(true);
-            setVote(1);
+            setVote((current)=> current + 1);
+        }else if(upVote){
+            setUpVote(false);
+            setVote((current)=> current - 1);
         }else if(downVote){
             setDownVote(false);
-            setVote(0);
+            setVote((current)=> current + 0);
         }
     }
     const handleDownVote = () => {
-        if(downVote && vote !== 0){
+        if(downVote){
             setDownVote(false);
-            setVote(0);
         }else if(!downVote && !upVote){
             setDownVote(true);
-            setVote(-1);
-        }else if(upVote){
+        } else if(upVote){
             setUpVote(false);
-            setVote(0);
+            setVote((current)=> current - 1);
         }
     }
 
