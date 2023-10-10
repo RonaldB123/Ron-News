@@ -99,7 +99,7 @@ export const SingleArticle = () => {
             ></Box>
             <Divider sx={{mb: 2}}/>
             <Typography variant='subtitle1' sx={{textAlign: "left", mb: 2}}>{article.body}</Typography>
-            <Typography variant='subtitle2'>Created {article.created_at.split("T")[0]}</Typography>
+            <Typography variant='subtitle2' textAlign="left">Created {article.created_at.split("T")[0]}</Typography>
             <Grid container sx={{mt: 5, justifyContent: "center"}}>
                 <Grid item>
                     <Typography sx={{fontSize: "30px", mr: 2}}>{article.votes + vote}</Typography>
