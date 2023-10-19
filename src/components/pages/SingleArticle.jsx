@@ -127,8 +127,8 @@ export const SingleArticle = () => {
                 src={article.article_img_url}
             ></Box>
             <Divider sx={{ mb: 2 }} />
-            <Typography variant='subtitle1' sx={{ textAlign: "left", mb: 2 }}>{article.body}</Typography>
-            <Typography variant='subtitle2' textAlign="left">Created {article.created_at.split("T")[0]}</Typography>
+            <Typography variant='subtitle1' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>{article.body}</Typography>
+            <Typography variant='subtitle2' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>Created {article.created_at.split("T")[0]}</Typography>
             <Grid container sx={{ mt: 5, justifyContent: "center" }}>
                 <Grid item>
                     <Typography sx={{ fontSize: "30px", mr: 2 }}>{disliked ? article.votes - dislikes : article.votes + likes}</Typography>
