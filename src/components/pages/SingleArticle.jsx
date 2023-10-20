@@ -8,7 +8,6 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { patchArticleVotes } from '../../api-functions/patchArticleVotesByArticleId';
-import axios from 'axios';
 
 export const SingleArticle = () => {
     const [article, setArticle] = useState([])
@@ -128,7 +127,7 @@ export const SingleArticle = () => {
             ></Box>
             <Divider sx={{ mb: 2 }} />
             <Typography variant='subtitle1' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>{article.body}</Typography>
-            <Typography variant='subtitle2' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>Created {article.created_at.split("T")[0]}</Typography>
+            <Typography variant='subtitle2' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>Created {new Date(article.created_at).toDateString()}</Typography>
             <Grid container sx={{ mt: 5, justifyContent: "space-between", alignItems: "center", maxWidth: "80%", mr: "auto", ml: "auto"}}>
                 <Grid item>
                     <Stack sx={{flexDirection: "row"}}>
