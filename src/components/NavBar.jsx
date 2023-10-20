@@ -9,8 +9,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ArticleIcon from '@mui/icons-material/Article';
 import CategoryIcon from '@mui/icons-material/Category';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import { IconButton } from "@mui/material";
 
 export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,7 +27,9 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1, maxWidth: {xs:"80%",sm:"50%"}, mr: "auto", ml: "auto" }}>
       <AppBar position="static" sx={{ backgroundColor: "white" }}>
         <Toolbar>
-          <NewspaperIcon sx={{mr: 1}}/>
+          <IconButton component={Link} to="/" sx={{mr: 1, p:0}}>
+            <NewspaperIcon/>
+          </IconButton>
           <Typography
             variant="h6"
             component="div"
