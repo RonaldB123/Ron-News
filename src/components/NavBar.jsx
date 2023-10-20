@@ -58,8 +58,8 @@ export const NavBar = () => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}><ArticleIcon sx={{mr: 2}}/><Link to="/articles">All articles</Link></MenuItem>
-            <MenuItem onClick={handleClose}><CategoryIcon sx={{mr: 2}}/><Link to="/topics">Topics</Link></MenuItem>
+            <Link to="/articles"><MenuItem onClick={handleClose}><ArticleIcon sx={{mr: 2}}/>All articles</MenuItem></Link>
+            <Link to="/topics"><MenuItem onClick={handleClose}><CategoryIcon sx={{mr: 2}}/>Topics</MenuItem></Link>
           </Menu>
         </Toolbar>
       </AppBar>
