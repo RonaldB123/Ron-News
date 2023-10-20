@@ -4,12 +4,12 @@ import { useState } from "react"
 import { Card, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 
-export const ArticleList = () => {
+export const ArticleList = (topic) => {
     const [articleData, setArticleData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getArticles().then(({data}) => {
+        getArticles(topic).then(({data}) => {
             setArticleData(data.articles);
             setIsLoading(false);
         })

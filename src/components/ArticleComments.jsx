@@ -2,10 +2,9 @@ import { getCommentsByArticleId } from "../api-functions/getCommentsByArticleId"
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import * as React from 'react';
-import { Divider, IconButton, Paper, Typography } from "@mui/material";
+import { IconButton, Paper, Typography } from "@mui/material";
 import CommentIcon from '@mui/icons-material/Comment';
 
 export const ArticleComments = ({article_id}) => {
@@ -68,7 +67,7 @@ export const ArticleComments = ({article_id}) => {
                 <CommentIcon  sx={{fontSize: "30px", mt: 1}}/>
             </IconButton>
             <Drawer
-              anchor={"comments"}
+              anchor={"left"}
               open={state["comments"]}
               onClose={toggleDrawer("comments", false)}
             >

@@ -45,7 +45,7 @@ export const NavBar = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            sx={{display: {md:"none", }}}
+            sx={{display: {md:"none"}}}
           >
             <MenuIcon />
           </Button>
