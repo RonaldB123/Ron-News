@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { getArticleById } from '../../api-functions/getArticleById';
 import { useEffect, useState } from 'react';
 import { ArticleComments } from '../ArticleComments';
-import { Box, Container, Divider, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Container, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
@@ -75,8 +75,8 @@ export const SingleArticle = () => {
         }
         setLiked(!liked);
         setLikes(liked ? likes - 1 : likes + 1);
-
-        axios.patch(`https://ron-news.onrender.com/api/articles/${article_id}`, { inc_votes: liked ? -1 : 1 })
+    
+        patchArticleVotes(article_id, liked ? -1 : 1)
             .then(response => {
             })
             .catch(error => {
@@ -92,7 +92,7 @@ export const SingleArticle = () => {
         setDisliked(!disliked);
         setDislikes(disliked ? dislikes - 1 : dislikes + 1);
 
-        axios.patch(`https://ron-news.onrender.com/api/articles/${article_id}`, { inc_votes: disliked ? 1 : -1 })
+        patchArticleVotes(article_id, disliked ? 1 : -1)
             .then(response => {
             })
             .catch(error => {
@@ -129,25 +129,24 @@ export const SingleArticle = () => {
             <Divider sx={{ mb: 2 }} />
             <Typography variant='subtitle1' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>{article.body}</Typography>
             <Typography variant='subtitle2' sx={{ textAlign: "left", mb: 2, width: "80%", mr: "auto", ml: "auto" }}>Created {article.created_at.split("T")[0]}</Typography>
-            <Grid container sx={{ mt: 5, justifyContent: "center" }}>
+            <Grid container sx={{ mt: 5, justifyContent: "space-between", alignItems: "center", maxWidth: "80%", mr: "auto", ml: "auto"}}>
                 <Grid item>
-                    <Typography sx={{ fontSize: "30px", mr: 2 }}>{disliked ? article.votes - dislikes : article.votes + likes}</Typography>
+                    <Stack sx={{flexDirection: "row"}}>
+                        <Typography sx={{ fontSize: "30px", mr: 1}}>{disliked ? article.votes - dislikes : article.votes + likes}</Typography>
+                        <IconButton color={liked ? 'primary' : 'default'} onClick={handleLike}>
+                            {liked ? <ThumbUpIcon sx={{fontSize: "30px"}} /> : <ThumbUpOutlinedIcon sx={{fontSize: "30px"}}/>}
+                        </IconButton>
+                        <IconButton color={disliked ? 'primary' : 'default'} onClick={handleDislike}>
+                            {disliked ? <ThumbDownIcon sx={{fontSize: "30px"}}/> : <ThumbDownOutlinedIcon sx={{fontSize: "30px"}}/>}
+                        </IconButton>
+                    </Stack>
                 </Grid>
-                <Grid item>
-                    <IconButton color={liked ? 'primary' : 'default'} onClick={handleLike}>
-                        {liked ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
-                    </IconButton>
-
-                </Grid>
-                <Grid item>
-                    <IconButton color={disliked ? 'primary' : 'default'} onClick={handleDislike}>
-                        {disliked ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
-                    </IconButton>
+                <Grid item sx={{ml: 1}}>
+                    <ArticleComments article_id={article.article_id} />
                 </Grid>
             </Grid>
 
             <Divider />
-            <ArticleComments article_id={article.article_id} />
         </Container>
     )
 }
